@@ -48,6 +48,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Add known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
       - name: Deploy to server
         run: |
           rsync -avz --exclude .git --exclude .github . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/ci-cd-app
