@@ -44,7 +44,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ssh rsync
 
       - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.7.1
+        uses: webfactory/ssh-agent@v0.8.1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
